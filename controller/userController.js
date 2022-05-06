@@ -18,8 +18,8 @@ let getAllUsers =(req, res, next) => {
   }
 
 let signup = (req, res, next) => {
-
-    User.register(new User({username: req.body.username}), 
+console.log(req.body)
+    User.register(new User({username: req.body.email}), 
       req.body.password, (err, user) => {
       if(err) {
         console.log(err);
@@ -28,25 +28,25 @@ let signup = (req, res, next) => {
         res.json({err: err});
       }
       else {
-        
-       
           user.name = req.body.name;
+          user.location = req.body.location;
           user.cnic = req.body.cnic;
-          user.cnicpic=req.body.cnicpic;
-  
           user.mobilephone = req.body.mobilephone;
           user.email = req.body.email;
+          
         user.save((err, user) => {
           if (err) {
+            console.log(err);
             res.statusCode = 500;
             res.setHeader('Content-Type', 'application/json');
             res.json({success:false , err: err});
-            return ;
           }
-          passport.authenticate('local')(req, res, () => {
+          passport.authenticate('jwtPassport')(req, res, () => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json({success: true, status: 'Registration Successful!'});
+            console.log(user)
+
           });
         });
       }

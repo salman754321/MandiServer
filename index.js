@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({
 
 app.use(passport.initialize());
 app.use(cors());
-
+app.use(express.json());
 const url = config.mongoUrl;
-const connect = mongoose.connect(url );
+const connect = mongoose.connect('mongodb+srv://agribazar:agribazar@cluster0.zrzbb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' , { useNewUrlParser:true , useUnifiedTopology:true} );
 
 connect.then((db) => {
     console.log("Connected correctly to server");
@@ -29,11 +29,16 @@ connect.then((db) => {
 
 
 let userRouter =require("./routes/users");
-
+let categoryRouter =require("./routes/category");
+let complaintRouter =require("./routes/complaints");
+let suggestionRouter =require("./routes/suggestions");
 
 const { default: axios } = require("axios");
 
 app.use("/users", userRouter);
+app.use("/category", categoryRouter);
+app.use("/complaints", complaintRouter);
+app.use("/suggestions", suggestionRouter);
 
 
 
@@ -41,10 +46,14 @@ app.use("/users", userRouter);
 
 
 
+app.get('/', (req, res) => {
+  res.send('Hello World! from Agribazar');
+});
 
 
 const port=process.env.PORT || 5000;
 app.listen(port,()=>{
     console.log(`Listning At Port ${port}`)
+    
 
 })

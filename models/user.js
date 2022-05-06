@@ -10,16 +10,9 @@ var User = new Schema({
       cnic: {
         type: String,  
       },
-      cnicpic:{
-        type:[String]
-      },
       mobilephone: {
         type: String,
         
-      },
-      walletAmount: {
-        type: Number,
-          default: 0,
       },
      
       email:{
@@ -28,6 +21,10 @@ var User = new Schema({
     role:  {
         type: String,
         default: "user"
+    },
+    location:{
+
+        type:String
     },
     status:{
       type:Boolean,

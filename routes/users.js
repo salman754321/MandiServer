@@ -7,7 +7,7 @@ var authenticate=require("../authenticate");
 const { getAllUsers ,signup , login , logout , changepassword , blockUser , updatedUser} = require('../controller/userController');
 router.use(bodyParser.json());
 /* GET users listing. */
-router.get('/', authenticate.verifyUser, getAllUsers);
+router.get('/', authenticate.verifyUser , authenticate.verifyAdmin, getAllUsers);
 router.post('/signup', signup);
 
 

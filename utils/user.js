@@ -1,6 +1,6 @@
  const getuser = (user) =>{
 
-    const fields = ["id" , "name" ,"cnic", "email" , "username" , "walletAmount" ,"mobilephone"  , "role" ,"status"]
+    const fields = ["id" , "name" ,"cnic", "email" , "username"  ,"mobilephone"  , "role" ,"status"]
     let newuser = {};
 
         fields.forEach((field)=>{
