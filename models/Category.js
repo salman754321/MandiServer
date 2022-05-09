@@ -8,13 +8,18 @@ var Category = new Schema({
         required: true,
         unique: true
     },
-    description: {
+    subCategory: {
         type: String,
         required: true
     },
     image: {
         type: String,
         required: true
+    },
+    bazar:{
+        type: String,
+        required: true
+
     },
     createdAt: {
         type: Date,

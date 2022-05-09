@@ -5,7 +5,9 @@ let Category = require('../models/Category');
  let getAllCategory = async(req , res)=>{
     await Category.find({} , (err , categories)=>{
         if(!err){
+            console.log(categories);
             res.json({success:true , categories:categories})
+
         }
     })
 }
@@ -14,9 +16,15 @@ let Category = require('../models/Category');
 let addCategory = async(req , res)=>{
     let category = new Category({
         name:req.body.name,
-        description:req.body.description,
-        image:req.body.image
+        subCategory:req.body.subCategory,
+        bazar:req.body.bazar
     });
+
+    // Uploading Image
+    if(req.file){
+        category.image = req.file.path;
+    }
+    console.log(category);
     await category.save((err , category)=>{
         if(!err){
             res.json({success:true , category:category})
@@ -25,7 +33,44 @@ let addCategory = async(req , res)=>{
 }
 
 
+let editCategory = async(req , res)=>{
+    await Category.findByIdAndUpdate(req.params.id , {
+        name:req.body.name,
+        subCategory:req.body.subCategory,
+        image:req.body.image,
+        bazar:req.body.bazar
+    } , (err , category)=>{
+        if(!err){
+            res.json({success:true , category:category})
+        }
+    }
+    )
+}
+
+let getCategoryById = async(req , res)=>{
+    await Category.findById(req.params.id , (err , category)=>{
+        if(!err){
+            res.json({success:true , category:category})
+        }
+
+
+    }
+    )
+}
+
+
+let deleteCategory = async(req , res)=>{
+    await Category.findByIdAndDelete(req.params.id , (err , category)=>{
+        if(!err){
+            res.json({success:true , category:category})
+        }
+    }
+    )
+}
 module.exports = {
     getAllCategory,
-    addCategory
+    addCategory,
+    editCategory,
+    getCategoryById,
+    deleteCategory
 }
