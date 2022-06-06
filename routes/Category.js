@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const authenticate = require('../authenticate');
 const upload = require('../utils/uploader');
 router.use(bodyParser.json());
-const {getAllCategory ,addCategory , deleteCategory}  = require('../controller/CategoryController');
+const {getAllCategory ,addCategory , deleteCategory , getCategoryById}  = require('../controller/CategoryController');
 
 // onlu loggedin users can access this fincion getAllCategory
 router.get('/', authenticate.verifyUser , getAllCategory);
@@ -13,5 +13,7 @@ router.post('/add', authenticate.verifyUser, authenticate.verifyAdmin ,upload.si
 
 
 router.delete('/delete/:id', authenticate.verifyUser, authenticate.verifyAdmin ,deleteCategory);
+
+router.get('/:id', authenticate.verifyUser , getCategoryById);
 
 module.exports = router;

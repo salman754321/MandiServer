@@ -6,13 +6,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require("passport-local-mongoose");
 var Post = new Schema({
-    product: {
+    Product: {
         type: String,
         required: true
     },
-    subCategory: {
-        type: Schema.Types.ObjectId,
-        ref: 'SubCategory'
+    Category: {
+        type:Schema.Types.ObjectId,
+        ref:'Category'
     },
     createdAt: {
         type: Date,

@@ -2,21 +2,22 @@
 // --------------------------------------------------------------------------------
 
 let Post = require('../models/Post');
-let User = require('../models/User');
-let SubCategory = require('../models/SubCategory');
+
+let Category = require('../models/Category');
 
 
 let getAllPosts = async(req , res)=>{
     await Post.find({} , (err , posts)=>{
         if(!err){
+            console.log(posts);
             res.json({success:true , posts:posts})
         }
-    })
+    }).populate(['addedBy' , 'Category']);
 }
 
 
-let getAllPostsBySubCategory = async(req , res)=>{
-    await Post.find({subCategory:req.params.id} , (err , posts)=>{
+let getAllPostsByCategory = async(req , res)=>{
+    await Post.find({Category:req.body.id} , (err , posts)=>{
         if(!err){
             res.json({success:true , posts:posts})
         }
@@ -25,7 +26,7 @@ let getAllPostsBySubCategory = async(req , res)=>{
 
 
 let getAllPostsByUser = async(req , res)=>{
-    await Post.find({addedBy:req.params.id} , (err , posts)=>{
+    await Post.find({addedBy:req.body.id} , (err , posts)=>{
         if(!err){
             res.json({success:true , posts:posts})
         }
@@ -43,22 +44,27 @@ let ApprovePost = async(req , res)=>{
 
 
 let addPost = async(req , res)=>{
-    let subCategory = await SubCategory.findById(req.body.subCategory);
-    if(!subCategory){
-        res.json({success:false , msg:'SubCategory not found'})
-    }
+  let category = await Category.findById(req.body.Category);
+  if(!category){
+      res.json({success:false , msg:'Category not found'})
+  }
     else{
+        console.log(req.body);
         let post = new Post({
-            product:req.body.product,
-            subCategory:subCategory._id,
+            Product:req.body.Product,
+            Category:category,
             addedBy:req.user._id,
             Quantity:req.body.Quantity,
             price:req.body.price
         }
         );
         await post.save((err , post)=>{
+            console.log(1,post);
             if(!err){
+                console.log(post);
                 res.json({success:true , post:post})
+            }else{
+                res.json({success:false , err:err})
             }
         }
         )
@@ -88,7 +94,7 @@ let deletePost = async(req , res)=>{
 
 module.exports = {
     getAllPosts,
-    getAllPostsBySubCategory,
+    getAllPostsByCategory,
     getAllPostsByUser,
     ApprovePost,
     addPost,
