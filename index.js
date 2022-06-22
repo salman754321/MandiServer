@@ -53,8 +53,9 @@ app.get('/', (req, res) => {
   res.send('Hello World! from Agribazar');
 });
 
+var serverPort = 8080;
 
-const port=process.env.PORT || 5000;
+var port = process.env.PORT || serverPort;
 app.listen(port,()=>{
     console.log(`Listning At Port ${port}`)
     
