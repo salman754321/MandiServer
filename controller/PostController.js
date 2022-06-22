@@ -80,6 +80,17 @@ let getPostById = async(req , res)=>{
     })
 }
 
+let getPostByAgriBazar = async(req , res)=>{
+    let categories = await Category.find({bazar:"Agri bazar"});
+    await Post.find({Category:{$in:categories}} , (err , posts)=>{
+        if(!err){
+            res.json({success:true , posts:posts})
+        }
+    }).populate(['addedBy' , 'Category']);
+}
+
+
+
 
 let deletePost = async(req , res)=>{
     await Post.findByIdAndDelete(req.params.id , (err , post)=>{

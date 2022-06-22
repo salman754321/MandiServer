@@ -151,7 +151,7 @@ let blockUser = async(req ,res, next)=>{
    // find user bey email
     await User.findOne({email:req.body.email}, (err, user)=>{
       if(!err){
-        if(req.body.otp==user.opt){
+        if(req.body.otp==user.otp){
         user.status=true;
         user.save();
         res.json({success:true , message:"User Verified Successfully"});
