@@ -19,6 +19,6 @@ router.post("/blockuser" ,authenticate.verifyUser,  blockUser )
 router.post("/changepassword" ,authenticate.verifyUser , changepassword )
 router.get("/updateduser" , authenticate.verifyUser , updatedUser)
 router.get('/logout',authenticate.verifyUser, logout);
-riuter.post('/verifyuser', verifyUser);
+router.post('/verifyuser', verifyUser);
 
 module.exports = router;
