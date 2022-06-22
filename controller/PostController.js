@@ -90,6 +90,26 @@ let getPostByAgriBazar = async(req , res)=>{
 }
 
 
+let getPostByMachinery = async(req , res )=>{
+    let categories = await Category.find({bazar:"Machinery"});
+    await Post.find({Category:{$in:categories}} , (err , posts)=>{
+        if(!err){
+            res.json({success:true , posts:posts})
+        }
+    }).populate(['addedBy' , 'Category']);
+
+}
+
+let getPostBySeeds = async(req , res)=>{
+    let categories = await Category.find({bazar:"Seeds"});
+    await Post.find({Category:{$in:categories}} , (err , posts)=>{
+        if(!err){
+            res.json({success:true , posts:posts})
+        }
+    }).populate(['addedBy' , 'Category']);
+
+}
+
 
 
 let deletePost = async(req , res)=>{
@@ -104,6 +124,9 @@ let deletePost = async(req , res)=>{
 
 
 module.exports = {
+    getPostBySeeds,
+    getPostByMachinery,
+    getPostByAgriBazar,
     getAllPosts,
     getAllPostsByCategory,
     getAllPostsByUser,
