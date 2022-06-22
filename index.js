@@ -31,7 +31,7 @@ connect.then((db) => {
 let userRouter =require("./routes/users");
 let categoryRouter =require("./routes/Category");
 let complaintRouter =require("./routes/Complaints");
-let suggestionRouter =require("./routes/Cuggestions");
+let suggestionRouter =require("./routes/Suggestions");
 
 let postsRouter =require("./routes/posts");
 const { default: axios } = require("axios");
