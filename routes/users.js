@@ -4,10 +4,10 @@ const bodyParser = require('body-parser');
 var User = require('../models/user');
 var passport = require('passport');
 var authenticate=require("../authenticate");
-const { getAllUsers ,signup , login , logout , changepassword , blockUser , updatedUser} = require('../controller/userController');
+const { getAllUsers ,signup , login , logout , changepassword , blockUser , updatedUser ,verifyUser} = require('../controller/userController');
 router.use(bodyParser.json());
 /* GET users listing. */
-router.get('/', authenticate.verifyUser , authenticate.verifyAdmin, getAllUsers);
+router.get('/', authenticate.verifyUser , authenticate.verifyAdmin, getAllUsers ,);
 router.post('/signup', signup);
 
 
@@ -19,6 +19,6 @@ router.post("/blockuser" ,authenticate.verifyUser,  blockUser )
 router.post("/changepassword" ,authenticate.verifyUser , changepassword )
 router.get("/updateduser" , authenticate.verifyUser , updatedUser)
 router.get('/logout',authenticate.verifyUser, logout);
-
+riuter.post('/verifyuser', verifyUser);
 
 module.exports = router;

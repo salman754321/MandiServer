@@ -30,7 +30,6 @@ console.log(req.body)
       else {
           user.name = req.body.name;
           user.location = req.body.location;
-          user.cnic = req.body.cnic;
           user.mobilephone = req.body.mobilephone;
           user.email = req.body.email;
           
@@ -147,6 +146,25 @@ let blockUser = async(req ,res, next)=>{
       });
     }
 
+  let verifyUser = async(req , res , next)=>{
+    
+   // find user bey email
+    await User.findOne({email:req.body.email}, (err, user)=>{
+      if(!err){
+        if(req.body.otp==user.opt){
+        user.status=true;
+        user.save();
+        res.json({success:true , message:"User Verified Successfully"});
+        }
+        else{
+          res.json({success:false , message:"Incorrect OTP"})
+        }
+      }else{
+        res.json({err:err});
+      }
+    });
+  }
+
   module.exports = {
       getAllUsers,
       signup,
@@ -154,6 +172,7 @@ let blockUser = async(req ,res, next)=>{
       logout,
       changepassword,
       blockUser,
-      updatedUser
+      updatedUser,
+      verifyUser
 
   }

@@ -7,12 +7,14 @@ var User = new Schema({
     name: {
         type: String
       },
-      cnic: {
-        type: String,  
-      },
       mobilephone: {
         type: String,
         
+      },
+      otp:{
+        type:Number,
+        default:1234,
+        max:9999,
       },
      
       email:{
@@ -28,7 +30,7 @@ var User = new Schema({
     },
     status:{
       type:Boolean,
-      default:true
+      default:false
     }
 });
 
