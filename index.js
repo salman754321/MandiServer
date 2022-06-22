@@ -40,7 +40,7 @@ app.use("/users", userRouter);
 app.use("/category", categoryRouter);
 app.use("/complaints", complaintRouter);
 app.use("/suggestions", suggestionRouter);
-app.use("/categories", categoriesRouter);
+app.use("/categories", categoryRouter);
 app.use("/posts", postsRouter);
 
 
