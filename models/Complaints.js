@@ -2,6 +2,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Complaints = new Schema({
+    Post: {
+        type:Schema.Types.ObjectId,
+        ref:'Post'
+    },
     description: {
         type: String,
         required: true

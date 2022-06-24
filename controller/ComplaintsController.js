@@ -16,16 +16,18 @@ let getAllComplaints = async(req , res , next)=>{
             res.json({success:true , complaints:complaints});
         }else{
             res.json({success:false , err:err});
-        }}).populate("user");
+        }}).populate(["user" , "post"]);
 
 }
 
 let addComplaint = async(req , res , next)=>{
     let user = req.user;
+    let post = req.body.post;
     let description = req.body.description;
     let newComplaint = new Complaints({
         description:description,
-        user:user._id
+        user:user._id,
+        post:post
     });
     await newComplaint.save((err , complaint)=>{
         if(!err){
