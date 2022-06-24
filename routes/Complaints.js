@@ -6,13 +6,15 @@ const authenticate = require('../authenticate');
 router.use(bodyParser.json());
 
 
-const { getAllComplaints ,addComplaint , ResolveComplaint }  = require('../controller/ComplaintsController');
+const { getAllComplaints ,addComplaint , ResolveComplaint , getAllComplaintsByUser }  = require('../controller/ComplaintsController');
 // onlu loggedin users can access this fincion getAllComplaints
 router.get('/', authenticate.verifyUser , getAllComplaints);
 // only admin can access this function addComplaint
 router.post('/add', authenticate.verifyUser , addComplaint);
 // only admin can access this function ResolveComplaint
 router.post('/resolve', authenticate.verifyUser, authenticate.verifyAdmin , ResolveComplaint);
+
+router.get('/getAllComplaintsByUser', authenticate.verifyUser , getAllComplaintsByUser);
 
 
 module.exports = router;

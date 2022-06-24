@@ -53,12 +53,25 @@ let ResolveComplaint = async(req , res , next)=>{
     }
     ).populate("user");
 }
+   
 
+let getAllComplaintsByUser = async(req , res , next)=>{
+    let user = req.user;
+    await Complaints.find({user:user._id} , (err , complaints)=>{
+        if(!err){
+            res.json({success:true , complaints:complaints});
+        }else{
+            res.json({success:false , err:err});
+        }
+    }
+    ).populate(["user" , "post"]);
+}
 
   
 
 module.exports = {
     getAllComplaints,
     addComplaint,
-    ResolveComplaint
+    ResolveComplaint,
+    getAllComplaintsByUser
 }
