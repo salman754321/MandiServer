@@ -53,6 +53,7 @@ console.log(req.body)
   }
 
   let login =  (req, res , next) => {
+    console.log(req.body)
     passport.authenticate('local' , (err , user ,info)=>{
         if(err){
           return next(err)
@@ -63,10 +64,12 @@ console.log(req.body)
        
         req.logIn(user, function(err) {
           if (err) {
+            console.log(err)
             return next(err);
           }else{
             console.log(req.user)
             if(!req.user.status){
+              console.log(req.user)
               res.json({success:false , msg:"You Are Blocked from using this app"})
             }else{
         var token=authenticate.getToken({_id:req.user._id})
