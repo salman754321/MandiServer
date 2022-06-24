@@ -32,6 +32,10 @@ let addCategory = async(req , res)=>{
     })
 }
 
+let getAllAgriBazarCategories = async(req , res)=>{
+    let categories = await Category.find({bazar:"Agri bazar"});
+    res.json({success:true , categories:categories})
+}
 
 let editCategory = async(req , res)=>{
     await Category.findByIdAndUpdate(req.params.id , {

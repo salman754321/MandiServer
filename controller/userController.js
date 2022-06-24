@@ -75,6 +75,7 @@ console.log(req.body)
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         let usr = getuser(user)
+        console.log(usr)
         res.json({success: true,token:token, user:usr, status: 'You are successfully logged in!'});
             }
       }})
