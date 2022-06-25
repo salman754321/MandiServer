@@ -5,7 +5,7 @@ const authenticate = require('../authenticate');
 
 router.use(bodyParser.json());
 
-let {getAllOffers , giveoffer} = require('../controller/OfferController');
+let {getAllOffers , giveoffer} = require('../controller/OfferControler');
 router.get('/alloffers', authenticate.verifyUser , getAllOffers);
 router.post('/sendoffer', authenticate.verifyUser , giveoffer);
 
