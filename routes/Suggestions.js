@@ -9,7 +9,7 @@ const { getAllSuggestions,addSuggestion , getSuggestionByuser } = require('../co
 
 router.get('/', authenticate.verifyUser , authenticate.verifyAdmin , getAllSuggestions);
 router.post('/add', authenticate.verifyUser , addSuggestion);
-router.post('/get', authenticate.verifyUser , getSuggestionByuser);
+router.get('/get', authenticate.verifyUser , getSuggestionByuser);
 
 
 module.exports = router;
