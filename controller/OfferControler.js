@@ -39,7 +39,7 @@ let getAllOffers = async(req , res , next)=>{
     ).populate(["by" , "to" , "post"]);
 }
 
-model.exports = {
+module.exports = {
     giveoffer,
     getAllOffers
 }
