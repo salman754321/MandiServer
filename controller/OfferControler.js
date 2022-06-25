@@ -4,9 +4,9 @@ const Post = require('../models/Post');
 let giveoffer = async(req , res , next)=>{
     let user = req.user;
     let post = req.body.post;
-    let pp = Post.findById(post);
+    let pp =await Post.findById(post);
     let to = pp.addedBy;
-    console.log(to)
+    
 
     
     let newOffer = new Offer({
@@ -37,7 +37,7 @@ let getAllOffers = async(req , res , next)=>{
             res.json({success:false , err:err});
         }
     }
-    ).populate(["by" , "to" , "post"]);
+    ).populate(["by" , "to" , "Post"]);
 }
 
 module.exports = {
