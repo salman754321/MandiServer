@@ -11,7 +11,7 @@ let giveoffer = async(req , res , next)=>{
     let newOffer = new Offer({
         
         by:user._id,
-        post:post,
+        Post:post,
         to:to,
         quantity:req.body.quantity,
 
