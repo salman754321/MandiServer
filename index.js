@@ -32,6 +32,7 @@ let userRouter =require("./routes/users");
 let categoryRouter =require("./routes/Category");
 let complaintRouter =require("./routes/Complaints");
 let suggestionRouter =require("./routes/Suggestions");
+let offerRouter =require("./routes/Offer");
 
 let postsRouter =require("./routes/posts");
 const { default: axios } = require("axios");
@@ -42,6 +43,7 @@ app.use("/complaints", complaintRouter);
 app.use("/suggestions", suggestionRouter);
 app.use("/categories", categoryRouter);
 app.use("/posts", postsRouter);
+app.use("/offers", offerRouter);
 
 
 

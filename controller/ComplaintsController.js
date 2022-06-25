@@ -34,7 +34,8 @@ let addComplaint = async(req , res , next)=>{
             res.json({success:true , complaint:complaint});
         }
         else{
-            res.json({success:false , err:err});
+            res.status(400).json({success:false , err:err});
+            
         }
     }
     );
