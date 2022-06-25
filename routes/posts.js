@@ -13,6 +13,7 @@ router.post('/approve/:id', authenticate.verifyUser , ApprovePost);
 router.get('/agribazar' , authenticate.verifyUser ,getPostByAgriBazar )
 router.get('/machinery' , authenticate.verifyUser ,getPostByMachinery )
 router.get('/seed' , authenticate.verifyUser ,getPostBySeeds )
+router.get('/byid' , authenticate.verifyUser ,getPostById )
 
 
 

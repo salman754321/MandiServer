@@ -73,7 +73,7 @@ let addPost = async(req , res)=>{
 
 
 let getPostById = async(req , res)=>{
-    await Post.findById(req.params.id , (err , post)=>{
+    await Post.findById(req.body.id , (err , post)=>{
         if(!err){
             res.json({success:true , post:post})
         }
