@@ -30,7 +30,7 @@ let getAllPostsByUser = async(req , res)=>{
         if(!err){
             res.json({success:true , posts:posts})
         }
-    })
+    }).populate(['addedBy' , 'Category']);
 }
 
 

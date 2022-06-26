@@ -15,6 +15,9 @@ router.get('/machinery' , authenticate.verifyUser ,getPostByMachinery )
 router.get('/seed' , authenticate.verifyUser ,getPostBySeeds )
 router.get('/byid' , authenticate.verifyUser ,getPostById )
 router.get('/byuser' , authenticate.verifyUser ,getAllPostsByUser )
+//update post by id update only price and quantity and name
+router.post('/update/:id', authenticate.verifyUser , updatePost);
+
 
 
 
