@@ -6,7 +6,7 @@ let giveoffer = async(req , res , next)=>{
     let post = req.body.post;
     let pp =await Post.findById(post);
     let to = pp.addedBy;
-    
+    console.log(req.body)
 
     
     let newOffer = new Offer({
