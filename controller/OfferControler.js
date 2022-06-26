@@ -4,9 +4,10 @@ const Post = require('../models/Post');
 let giveoffer = async(req , res , next)=>{
     let user = req.user;
     let post = req.body.post;
+    console.log(req.body)
     let pp =await Post.findById(post);
     let to = pp.addedBy;
-    console.log(req.body)
+    
 
     
     let newOffer = new Offer({
