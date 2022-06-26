@@ -26,7 +26,7 @@ let getAllPostsByCategory = async(req , res)=>{
 
 
 let getAllPostsByUser = async(req , res)=>{
-    await Post.find({addedBy:req.body.id} , (err , posts)=>{
+    await Post.find({addedBy:req.user._id} , (err , posts)=>{
         if(!err){
             res.json({success:true , posts:posts})
         }
@@ -148,5 +148,5 @@ module.exports = {
     getPostById,
     deletePost,
     updatePost,
-    
+
 }
