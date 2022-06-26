@@ -77,7 +77,7 @@ let getPostById = async(req , res)=>{
         if(!err){
             res.json({success:true , post:post})
         }
-    })
+    }).populate(['addedBy' , 'Category']);
 }
 
 let getPostByAgriBazar = async(req , res)=>{
