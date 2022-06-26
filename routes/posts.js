@@ -5,7 +5,7 @@ const authenticate = require('../authenticate');
 
 router.use(bodyParser.json());
 
-const { getAllPosts ,getAllPostsByCategory ,getAllPostsByUser ,getPostById,getPostByMachinery , getPostBySeeds,getPostByAgriBazar, ApprovePost , addPost } = require('../controller/PostController');
+const { getAllPosts ,getAllPostsByCategory ,getAllPostsByUser ,getPostById,getPostByMachinery,updatePost , getPostBySeeds,getPostByAgriBazar, ApprovePost , addPost } = require('../controller/PostController');
 // onlu loggedin users can access this fincion getAllComplaints
 router.get('/', authenticate.verifyUser , getAllPosts);
 router.post('/add', authenticate.verifyUser , addPost);
