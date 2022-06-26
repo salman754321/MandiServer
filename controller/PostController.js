@@ -109,6 +109,19 @@ let getPostBySeeds = async(req , res)=>{
     }).populate(['addedBy' , 'Category']);
 
 }
+// update post by id update only price and quantity and name
+let updatePost = async(req , res)=>{
+    await Post.findByIdAndUpdate(req.params.id , {
+        Product:req.body.Product,
+        Quantity:req.body.Quantity,
+        price:req.body.price
+    } , (err , post)=>{
+        if(!err){
+            res.json({success:true , post:post})
+        }
+    })
+}
+
 
 
 
@@ -133,5 +146,7 @@ module.exports = {
     ApprovePost,
     addPost,
     getPostById,
-    deletePost
+    deletePost,
+    updatePost,
+    
 }

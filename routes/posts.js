@@ -14,6 +14,7 @@ router.get('/agribazar' , authenticate.verifyUser ,getPostByAgriBazar )
 router.get('/machinery' , authenticate.verifyUser ,getPostByMachinery )
 router.get('/seed' , authenticate.verifyUser ,getPostBySeeds )
 router.get('/byid' , authenticate.verifyUser ,getPostById )
+router.get('/byuser' , authenticate.verifyUser ,getAllPostsByUser )
 
 
 
