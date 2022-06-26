@@ -117,7 +117,7 @@ let updatePost = async(req , res)=>{
         price:req.body.price
     } , (err , post)=>{
         if(!err){
-            res.json({success:true , post:post})
+            res.json({success:true})
         }
     })
 }
