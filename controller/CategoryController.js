@@ -14,20 +14,24 @@ let Category = require('../models/Category');
 
 // Only Admin can add new category and Category must be unique
 let addCategory = async(req , res)=>{
+    console.log(req.file);
     let category = new Category({
         name:req.body.name,
         subCategory:req.body.subCategory,
         bazar:req.body.bazar
     });
 
-    // Uploading Image
+    // Uploading Imag
     if(req.file){
-        category.image = req.file.path;
+      
+        category.image = req.file.filename;
     }
-    console.log(category);
     await category.save((err , category)=>{
         if(!err){
             res.json({success:true , category:category})
+        }else{
+            console.log(err);
+            res.json({success:false , err:err})
         }
     })
 }
