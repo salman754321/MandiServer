@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
   res.send('Hello World! from Agribazar');
 });
 
-var serverPort = 8080;
+var serverPort = 5000;
 
 var port = process.env.PORT || serverPort;
 app.listen(port,()=>{
