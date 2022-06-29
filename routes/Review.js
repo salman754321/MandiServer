@@ -8,6 +8,6 @@ router.use(bodyParser.json());
 
 router.get('/allReviews', authenticate.verifyUser , getAllReviews);
 router.get('/byUser', authenticate.verifyUser , getReviewsByUser);
-router.post('/add', authenticate.verifyUser, authenticate.verifyAdmin , addReview);
+router.post('/add', authenticate.verifyUser,  addReview);
 
 module.exports = router;
