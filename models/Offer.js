@@ -17,7 +17,12 @@ var Offers = new Schema({
     quantity:{
         type:Number,
         required:true
+    },
+    isAccepted:{
+        type:Boolean,
+        default:false
     }
+
 }
 );
 module.exports = mongoose.model('Offers', Offers);

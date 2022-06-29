@@ -41,7 +41,38 @@ let getAllOffers = async(req , res , next)=>{
     ).populate(["by" , "to" , "Post"]);
 }
 
+let acceptOffer = async(req , res , next)=>{
+    let user = req.user;
+    let offer = req.body.offer;
+    await Offer.findById(offer , (err , offer)=>{
+        if(!err){
+            offer.isAccepted = true;
+            offer.save();
+            res.json({success:true , offer:offer});
+        }else{
+            res.json({success:false , err:err});
+        }
+    }
+    ).populate(["by" , "to" , "Post"]);
+}
+
+
+let rejectOffer = async(req , res , next)=>{
+    let user = req.user;
+    let offer = req.body.offer;
+    await Offer.findOneAndDelete(offer , (err , offer)=>{
+        if(!err){
+            res.json({success:true , offer:offer});
+        }else{
+            res.json({success:false , err:err});
+        }
+    }
+    ).populate(["by" , "to" , "Post"]);
+}
+
 module.exports = {
     giveoffer,
-    getAllOffers
+    getAllOffers,
+    rejectOffer,
+    acceptOffer
 }
