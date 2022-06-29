@@ -2,7 +2,8 @@ var User = require('../models/user');
 var passport = require('passport');
 var authenticate=require("../authenticate");
 const getuser = require('../utils/user');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const SendMail = require('../SendMail');
 
 let getAllUsers =(req, res, next) => {
     User.find({}, (err, users) => {
@@ -19,6 +20,7 @@ let getAllUsers =(req, res, next) => {
 
 let signup = (req, res, next) => {
 console.log(req.body)
+let otp = Math.floor(Math.random() * (9999 - 1000) + 1000);
     User.register(new User({username: req.body.email}), 
       req.body.password, (err, user) => {
       if(err) {
@@ -32,6 +34,7 @@ console.log(req.body)
           user.location = req.body.location;
           user.mobilephone = req.body.mobilephone;
           user.email = req.body.email;
+          user.otp = otp;
           
         user.save((err, user) => {
           if (err) {
@@ -41,6 +44,12 @@ console.log(req.body)
             res.json({success:false , err: err});
           }
           passport.authenticate('jwtPassport')(req, res, () => {
+            let options = {
+              email: user.email,
+              name: user.name,
+              otp: user.otp
+            }
+            SendMail(options);
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json({success: true, status: 'Registration Successful!'});
